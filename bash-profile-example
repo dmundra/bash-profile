@@ -1,0 +1,12 @@
+alias ll='ls -lG'
+CLICOLOR=1
+
+# write a function to compute the current git branch
+parse_git_branch() {
+        git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+# set the PS1 variable
+PS1="[\u@\h \W] \[\e[0;33;49m\]\$(parse_git_branch)\[\e[0;0m\]$ "
+
+source ~/.git-completion
